@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="UserManage"><!--自定义模块-->
+<head>
+	<meta charset="utf-8" />
+	<script src="static/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<!--  <link href="static/bootstrap/2.3.1/css_cerulean/bootstrap.min.css" type="text/css" rel="stylesheet">-->
+	<script src="static/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript"></script>
+	<link href="css/vendor.css" type="text/css" rel="stylesheet">
+	<title>模拟数据生成平台</title>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">模拟数据生成平台</a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" >Samples <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li class="dropdown-header">basic</li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_basic_boolean" href="#/example/boolean/0">boolean</a></li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_basic_integer" href="#/example/integer/0">integer</a></li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_basic_integer" href="#/example/string/0">string</a></li>
+                                <!-- <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_basic_reference" href="#">reference</a></li> -->
+                                <li class="divider"></li>
+                                <li class="dropdown-header">array</li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_array_enum" href="#/example/enums/0">enums</a></li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_array_fixed" href="#/example/fixed/0">fixed values</a></li>
+                               	<!--  <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_array_nTimes" href="#">n-times repeated</a></li> -->
+                                <li class="divider"></li>
+                                <li class="dropdown-header">faker.js</li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_faker_properties" href="#/example/faker/0">properties</a></li>
+                              	<!--  <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_faker_fake" href="#">faker.fake()</a></li> -->
+                               	<!--  <li class="divider"></li>
+                                <li class="dropdown-header">chance.js</li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_chance_guid" href="#">guid</a></li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_chance_name" href="#">name</a></li>
+                                <li><a data-target=".navbar-collapse" data-toggle="collapse" id="example_chance_properties" href="#">properties</a></li> -->
+                            </ul>
+                        </li>
+                        <li><a href="#/myInterface">我的接口</a></li>
+
+                       <!--  <li class="dropdown">
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" >Community <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="https://github.com/json-schema-faker/json-schema-faker/" target="_blank">GitHub</a></li>
+                                <li><a href="https://travis-ci.org/json-schema-faker/json-schema-faker" >CI</a></li>
+                                <li><a href="https://github.com/json-schema-faker/json-schema-faker/issues/new">Contribution</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">tools</li>
+                                <li><a href="https://github.com/json-schema-faker/angular-jsf">AngularJS module</a></li>
+                                <li><a href="https://github.com/json-schema-faker/grunt-jsonschema-faker">Grunt plugin</a></li>
+                                <li><a href="https://github.com/json-schema-faker/json-schema-server">JSF Server</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                   		<li><a href="https://github.com/json-schema-faker/json-schema-faker/" target="_blank">json-schema-faker.js</a></li>
+                        <li><a href="https://github.com/marak/Faker.js/" target="_blank">faker.js</a></li>
+                       <!--  <li><a href="http://chancejs.com/" target="_blank">chance.js</a></li>
+                        <li><a href="http://fent.github.io/randexp.js/" target="_blank">randexp.js</a></li> -->
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+	
+	<div ng-view>
+		loading...
+	</div><!--视图模板容器-->
+	
+
+	<script type="text/javascript" src="js/angular.min.js" ></script>
+	<script type="text/javascript" src="js/angular-route.js" ></script>
+
+	<!-- 剪切板 https://github.com/omichelsen/angular-clipboard -->
+	<script src="js/angular-clipboard.js"></script>
+
+	<script type="text/javascript" src="js/faker.js" ></script>
+	<script type="text/javascript" src="js/json-schema-faker.js" ></script>
+	<script type="text/javascript" src="js/controller.js" ></script>
+	<script type="text/javascript" src="js/service.js" ></script>
+	<script type="text/javascript" src="js/ace.js"></script>
+
+</body>
+</html>
