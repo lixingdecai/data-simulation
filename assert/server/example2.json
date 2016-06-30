@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/positiveInt"
+        },
+        "name": {
+          "type": "string",
+          "faker": "name.findName"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "faker": "internet.email"
+        },
+        "array": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 15,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "$ref": "aa"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "array"
+      ]
+    }
+  },
+  "required": [
+    "user"
+  ],
+  "definitions": {
+    "positiveInt": {
+      "type": "integer",
+      "minimum": 0,
+      "exclusiveMinimum": true
+    }
+  }
+}
