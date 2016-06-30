@@ -1,0 +1,221 @@
+
+
+<div class="container-fluid datasimulation">
+	<div class="row row-centered">
+        <button role="button" id="run" class="btn  btn-primary" ng-click="creatNote()" ng-if="obList.length!=0">重新创建</button>
+        <button role="button" id="run" class="btn  btn-primary" ng-click="creatNote()" ng-if="obList.length==0">新建</button>
+        <button role="button" id="run" class="btn  btn-primary" ng-click="createJson()">生成数据</button>
+	</div>
+    <div class="row">
+     <div class="col-xs-12 col-md-12" style="overflow-y:auto;height:400px;margin:20px auto;">
+			<table id="treeTable" class="table table-hover table-bordered table-condensed tree_table" style="display: table;">
+				<thead>
+					<tr>
+						<th>名称</th><th>类型</th><th style="width:10%">属性</th><th>生成数据规则</th><th style="width:10%">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="ob in obList" >
+						<td style="padding-left:{{ob.parentNum}}px;">{{ob.name|isEmpty}}</td>
+						<td style="width:10%">{{ob.type}}</td>
+						<td>{{ob.faker}}</td>
+						<td>{{ob.length}}</td>
+						<td style="width:10%">
+							<!-- <a ng-if="ob.type=='array'||ob.type=='object'" ng-click="addChild(ob.id)">新加子节点</a>
+							<a ng-click="deleteNode(ob.id)">删除节点</a>
+							<a ng-click="editNode(ob.id)">编辑节点</a>  -->
+						<div>	<span class="glyphicon glyphicon-plus"
+							ng-if="(ob.type=='array'||ob.type=='object') &&(ob.enumString==undefined||ob.enumString==null||ob.enumString=='')" ng-click="addChild(ob.id)" title="新加子节点"></span>
+							<span class="glyphicon glyphicon-remove" ng-click="deleteNode(ob.id)" title="删除节点"></span>
+							<span class="glyphicon glyphicon-edit" ng-click="editNode(ob.id)" title="编辑节点"></span></div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+		</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">JSON Schema <i class="glyphicon glyphicon-log-out" style="float:right;" ng-if="jsonObject!=undefined" ng-click="schemaToData()" title="结构生成数据"></i></h3>
+
+                </div>
+                <div class="panel-body">
+                    <textarea d="input" style="width:100%;height:280px;overflow-y:auto" ng-model="jsonObject" ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Data output</h3>
+                </div>
+                <div class="panel-body">
+                    <textarea d="input" style="width:100%;height:280px;overflow-y:auto" ng-model="jsonObject2" readonly="readonly"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-centered">
+        <button role="button" id="run" class="btn btn-lg btn-primary" ng-click="sent()" ng-disabled="jsonObject2==undefined||!jsonDataChange">生成接口</button>
+    </div>
+</div>
+
+
+<!-- <div style="width:45%;float:left;">
+	<textarea style="width:100%;height:300px;overflow-y:auto">{{jsonObject}}</textarea>
+</div> -->
+<!-- <div style="width:45%;float:right;">	
+	<textarea style="width:100%;height:300px;overflow-y:auto">{{jsonObject2}}</textarea>
+</div> -->
+<div id="myModal" class="modal hide fade"  role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">数据地址</h3>
+		  </div>
+		  <div class="modal-body">
+		  	<!-- <input type="text" ng-model="jsonURL" placeholder="Enter text to copy" class="form-control"> -->
+		   <p>{{jsonURL}}</p> 
+		   <!--  <textarea id="fe_text" cols="50" rows="3">输入需要复制的内容</textarea> -->
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		    <button clipboard  class="btn btn-primary" supported="supported" text="jsonURL" on-copied="success()" on-error="fail(err)">Copy</button>
+		  </div>
+		</div>
+	</div>
+</div>
+<div id="myModal2" class="modal hide fade"  role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+<!-- 		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">数据地址</h3>
+		  </div> -->
+		  <div class="modal-body">
+		  	<!-- <input type="text" ng-model="jsonURL" placeholder="Enter text to copy" class="form-control"> -->
+		   <p>确定删除此节点！</p> 
+		   <!--  <textarea id="fe_text" cols="50" rows="3">输入需要复制的内容</textarea> -->
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		    <button clipboard  class="btn btn-primary" supported="supported" text="jsonURL" ng-click="sureDel()">确定</button>
+		  </div>
+		</div>
+	</div>
+</div>
+<div id="myModal3" class="modal hide fade"  role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+<!-- 		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">数据地址</h3>
+		  </div> -->
+		  <div class="modal-body">
+		  	<!-- <input type="text" ng-model="jsonURL" placeholder="Enter text to copy" class="form-control"> -->
+		   <form  modelAttribute="menu" class="form-horizontal" name="configForm">
+				<div class="control-group">
+					<label class="control-label">上级菜单:</label>
+					<div class="controls">
+			           
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">类型:</label>
+					<div class="controls">
+						<select name="select" id="select_k1" class="xla_k" ng-model="exObject.type"> 
+							<option value="object" selected="selected" >对象</option> 
+							<option value="array">数组</option>
+							<option value="string">字符串</option>
+							<option value="integer">数字</option>
+							<option value="boolean">对错</option>
+							<option value="faker">Faker</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group" >
+					<label class="control-label">名称:</label>
+					<div class="controls">
+						<input type="text"   placeholder="请输入名称" ng-model="exObject.name" ng-disabled="exObject.id=='1'" data-toggle="tooltip" data-placement="right" title="请勿将emun、faker等关键字作为名称">
+					</div>
+				</div>
+
+				<div class="control-group" ng-if="exObject.type=='array'">
+					<label class="control-label">数量:</label>
+					<div class="controls">
+						<input type="text"   placeholder="数量" ng-model="exObject.num" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+					</div>
+				</div>
+				<div class="control-group" ng-if="exObject.type=='string'">
+					<label class="control-label">长度:</label>
+					<div class="controls">
+						<input type="text"   placeholder="长度" ng-model="exObject.length" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+					</div>
+				</div>
+				<div class="control-group" ng-if="exObject.type=='faker'" >
+					<label class="control-label">生成策略:</label>
+					<div class="controls">
+						<select name="select" id="select_k1" class="xla_k" ng-model="exObject.fakerData1" ng-options="s.module for s in fakerData" required="required"> 
+						</select>
+						<select name="select" id="select_k1" class="xla_k" ng-model="exObject.fakerData2" ng-options="s.name for s in exObject.fakerData1.name" required="required" > 
+						</select>
+						<div class="alert fade in alertDesc" ng-if="exObject.fakerData2.decript!=undefined">
+				            <!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
+				            <strong>{{exObject.fakerData2.decript}}</strong>
+				          </div>
+
+						<!-- <input type="text"   placeholder="生成策略" ng-model="exObject.faker" > -->
+					</div>
+				</div>
+				<div class="control-group" ng-if="exObject.type=='integer'">
+					<label class="control-label">最小值-最大值:</label>
+					<div class="controls">
+						<input type="text"   placeholder="最小值" ng-model="exObject.minimum" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+						<input type="text"   placeholder="最大值" ng-model="exObject.maximum" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+					</div>
+				</div>
+				<div class="control-group" ng-if="exObject.type=='integer'">
+					<label class="control-label">倍数</label>
+					<div class="controls">
+						<input type="text"   placeholder="最小值" ng-model="exObject.multipleOf" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+					</div>
+				</div>
+				<div class="control-group" ng-if="exObject.type=='string'||exObject.type=='array'||exObject.type=='integer'">
+					<label class="control-label">枚举:</label>
+					<div class="controls">
+						<input type="text"   placeholder="多个值以符号‘&’隔开" ng-model="exObject.enumString" >
+					</div>
+				</div>
+			<!-- 		<div class="control-group" ng-if="exObject.type=='boolean'">
+					<label class="control-label">值:</label>
+					<div class="controls">
+					 <label ><input type="radio" name="exObject.boolean"  value="true" style="margin:0;" ng-checked="true">
+						true</label>
+					<label > <input type="radio" name="exObject.boolean"  value="false" style="margin:0;">
+					  false</label>
+					 </div>
+				</div> -->
+				<div class="control-group" ng-if="exObject.id=='1'">
+					<label class="control-label">接口描述:</label>
+					<div class="controls">
+						<input type="text"   placeholder="接口描述" ng-model="exObject.desc" required="required"  maxlength="30">
+					</div>
+				</div>
+				<div class="control-group form-actions">
+					<div class="controls"><button class="btn  btn-primary"  ng-click="saveExObject()"  ng-disabled="configForm.$invalid" value="保 存">保 存</button>
+					<button id="btnCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true" >取消</button>
+				</div>
+			</form>
+		   <!--  <textarea id="fe_text" cols="50" rows="3">输入需要复制的内容</textarea> -->
+		  </div>
+		 <!--  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		    <button clipboard  class="btn btn-primary" supported="supported" text="jsonURL" ng-click="sureDel()">确定</button>
+		  </div> -->
+		</div>
+	</div>
+</div>
+
