@@ -19,8 +19,11 @@ faker:		特殊类型。一种生成策略，可以选择生成随机邮箱、金
 
 ## 技术
 服务：node.js
+
 json数据结构：json-schema-faker (github:https://github.com/json-schema-faker/json-schema-faker) 
+
 生成策略：faker.js、 (chance.js、randexp 功能还未添加)
+
 前端架构：angular.js
 
 
