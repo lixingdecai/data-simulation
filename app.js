@@ -3,7 +3,7 @@ var PORT = 8001;
 var http = require('http');
 var url=require('url');
 var fs=require('fs');
-var faker = require('faker');
+//var faker = require('faker');
 var mine={
   "css": "text/css",
   "gif": "image/gif",
