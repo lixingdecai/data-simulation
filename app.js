@@ -38,7 +38,7 @@ var server = http.createServer(function (request, response) {
         //如果访问目录
         pathname += "index.html"; //指定为默认网页
     }
-    var realPath = path.join("assets", pathname);
+    var realPath = path.join("asset", pathname);
     //console.log("realPath="+realPath+";pathname="+pathname);
     var ext = path.extname(realPath);
     ext = ext ? ext.slice(1) : 'unknown';//后缀
