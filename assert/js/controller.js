@@ -4,7 +4,7 @@ var app = angular.module( 'UserManage', [ 'starter.services','ngRoute','angular-
 function umRouteConfig ( $routeProvider ) {
 	// console.log( $routeProvider );
 	$routeProvider
-	.when( '/example/:case/:jsonID', {
+	.when( '/home/:case/:jsonID', {
 		controller: ExampleController,
 		templateUrl: 'home.html'
 	})
@@ -21,7 +21,7 @@ function umRouteConfig ( $routeProvider ) {
 		templateUrl: 'myInterface.html'
 	})
 	.otherwise({
-      redirectTo: '/example/0/0'
+      redirectTo: '/home/0/0'
     });
 }
 
