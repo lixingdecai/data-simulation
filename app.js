@@ -38,14 +38,14 @@ var server = http.createServer(function (request, response) {
         //如果访问目录
         pathname += "index.html"; //指定为默认网页
     }
-    var realPath = path.join("asset", pathname);
+    var realPath = path.join("src", pathname);
     //console.log("realPath="+realPath+";pathname="+pathname);
     var ext = path.extname(realPath);
     ext = ext ? ext.slice(1) : 'unknown';//后缀
 
     fs.exists(realPath, function (exists) {
         if (!exists) {
-            if(realPath=="assets\\sentData"){//前台发送数据给后台的空接口
+            if(realPath=="src\\sentData"){//前台发送数据给后台的空接口
                 parseJSON(request, response,requestUrl,ext,null)
             }else{
               // console.log("404");
@@ -116,8 +116,8 @@ function parseJSON(req,response,requestUrl,ext,next){
         next();*/
     })
 }
-var _dirname="assets/JSONData/";
-var _schemaDirname="assets/JSONSchema/";
+var _dirname="src/JSONData/";
+var _schemaDirname="src/JSONSchema/";
 function writeFile(data,name){
     //console.log("data: "+data);
     data=JSON.parse(data);

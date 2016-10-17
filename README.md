@@ -5,6 +5,11 @@ datasimulation是为了让前端开发人员脱离后端依赖，可以生成前
 根据你的需求，在页面的树形结构配置出你需要的数据的结构、类型和一些特定数据（地址、名称、金额、邮箱等等）。并将生成的数据存储本地，生成一个可提供前端调用的接口。在等待后端提供可用接口后，与之替换就好。
 避免手写容易产生的格式化问题 和 减少大数据生成的庞大工作量
 
+##启动
+安装node 
+切换到工程当前文件夹
+输入命令：node app.js
+
 ## 功能
 数据类型：object、array、integer、string、faker
 
@@ -28,31 +33,19 @@ json数据结构：json-schema-faker (github:https://github.com/json-schema-fake
 
 
 ##树形模型结构
-——id			标识符
-
-——parent		父节点标识id
-
-——type			类型
-
-——num			数量（array）
-
-——length		长度（string）
-
-——enumString	枚举内容
-
-——minimum		最小值（integer）
-
-——maximum		最大值（integer）
-
-——multipleOf	倍数（integer）
-
-——fakerData1
-
-	——module	faker的模块名
-	
-——fakerData2
-
-	——name		faker的方法名称
+    ——id			标识符
+    ——parent		父节点标识id
+    ——type			类型
+    ——num			数量（array）
+    ——length		长度（string）
+    ——enumString	枚举内容
+    ——minimum		最小值（integer）
+    ——maximum		最大值（integer）
+    ——multipleOf	倍数（integer）
+    ——fakerData1
+    	——module	faker的模块名
+    ——fakerData2
+    	——name		faker的方法名称
 	
 
 ##bug
