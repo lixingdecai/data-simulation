@@ -5,17 +5,19 @@ datasimulation是为了让前端开发人员脱离后端依赖，可以生成前
 根据你的需求，在页面的树形结构配置出你需要的数据的结构、类型和一些特定数据（地址、名称、金额、邮箱等等）。并将生成的数据存储本地，生成一个可提供前端调用的接口。在等待后端提供可用接口后，与之替换就好。
 避免手写容易产生的格式化问题 和 减少大数据生成的庞大工作量
 
-##截图  
-数据配置生成页面  
-![配置数据模型](https://github.com/lixingdecai/data-simulation/raw/master/src/images/screentShot1.png)  
-我的接口  
-![我的借口](https://github.com/lixingdecai/data-simulation/raw/master/src/images/screentShot2.png)
+##截图<br>
+
+  数据配置生成页面<br> 
+  ![](https://github.com/lixingdecai/data-simulation/raw/master/src/images/screenShot1.png)  
+  我的接口<br>  
+  ![](https://github.com/lixingdecai/data-simulation/raw/master/src/images/screenShot2.png)
+
 ##启动
 安装node 
 切换到工程当前文件夹
 输入命令：node app.js
 
-## 功能
+##功能
 数据类型：object、array、integer、string、faker
 
 object:		对象类型。可添加子节点、设置对象名；
